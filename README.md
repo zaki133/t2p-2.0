@@ -2,12 +2,12 @@
 
 ## Description
 
-This repository is for the source code handling the web-api call of llm providers as GPT from Open AI
+This repository is for the source code handling the web-api call of llm providers as GPT from Open AI. The 
 
 ## Features
 
 - "/test" Route - Route used for connection testing 
-- Feature 2
+- "/api_call" Route - Route used for processing the textual information from the request. The route takes 2 arguments inside the POST request: "text": "The process description in string format" and "api_key": "OPENAI (not AzureOpenAI!) key". #ADD THE RETURN TYPE ACCORDING TO THE PARSER  
 - Feature 3
 - Add more features as needed
 
