@@ -13,7 +13,7 @@ class ApiCaller:
                     {"role": "user", "content": text}
                 ],
                 model="gpt-4-turbo",  
-                max_tokens=4096  ################# CHANGE THIS LATER
+                max_tokens=4096  ################# CHANGE THIS LATER IF NEEDED
             )
             # Return the text of the first completion in the response
             return chat_completion.choices[0].message.content.strip()
