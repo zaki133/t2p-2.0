@@ -66,3 +66,22 @@ Open a terminal and send a GET request to the following URL:
 ```bash
 curl http://localhost:4000/test_connection
 ```
+
+## Running unit tests
+First install the requirements:
+```bash
+pip install -r testing_requirements.txt
+```
+To run all the tests, use the following command:
+```bash
+coverage run -m unittest discover
+```
+To see the coverage report, use the following command:
+```bash
+coverage report -m
+```
+If you want to see the coverage report in html format, use the following command:
+```bash
+coverage html
+```
+Then navigate to the htmlcov directory and open the index.html file in a browser.
