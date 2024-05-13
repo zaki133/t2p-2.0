@@ -52,3 +52,17 @@ Run the app:
 ```bash
 docker run -p 4000:5000 my_flask_app
 ```
+
+## Local testing if the endpoint is working
+Before you start testing the endpoint, make sure the app is running. If you are not sure how to run the app, please refer to the previous section
+
+### Test if the endpoint is working using Postman
+Open Postman and send a GET request to the following URL:
+```bash
+http://localhost:4000/test_connection
+```
+### Test if the endpoint is working using curl
+Open a terminal and send a GET request to the following URL:
+```bash
+curl http://localhost:4000/test_connection
+```
