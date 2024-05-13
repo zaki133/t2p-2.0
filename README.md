@@ -68,7 +68,7 @@ curl http://localhost:4000/test_connection
 ```
 
 ## Running unit tests
-First install the requirements:
+First install the requirements, see section "Setting Up Your Local Environment" for more information.
 
 To run all the tests, use the following command:
 ```bash
