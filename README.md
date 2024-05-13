@@ -69,9 +69,7 @@ curl http://localhost:4000/test_connection
 
 ## Running unit tests
 First install the requirements:
-```bash
-pip install -r testing_requirements.txt
-```
+
 To run all the tests, use the following command:
 ```bash
 coverage run -m unittest discover
