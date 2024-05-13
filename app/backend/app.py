@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from gpt_process import ApiCaller
 
-app = Flask(__name__)
+app = Flask(__name__) 
 
 @app.route('/test_connection', methods=['GET'])
 def test():
@@ -28,7 +28,7 @@ def api_call():
         ac = ApiCaller(api_key=data['api_key'])
 
         # Process the data using the run method of ApiCaller
-        result = ac.run(data['text'])
+        result = ac.conversion_pipeline(data['text'])
 
         # Return the outcome of the run method
         return jsonify({"result": result}), 200
