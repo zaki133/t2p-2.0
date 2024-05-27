@@ -74,6 +74,9 @@ Create config.py file in app/test folder and add the following content:
 ```bash
 API_KEY = "ENTER_YOUR_API_KEY_HERE"
 ```
+
+### In the app/test folder, run the following commands:
+
 To run all the tests, use the following command:
 ```bash
 coverage run -m unittest discover
