@@ -30,8 +30,13 @@ def api_call():
         # Process the data using the run method of ApiCaller
         result = ac.run(data['text'])
 
+        # If the result contains an error message, return it with a 500 status code
+        if "{'error': {'message':" in result:
+            return jsonify({"error": result}), 500
+
         # Return the outcome of the run method
         return jsonify({"result": result}), 200
+    
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
