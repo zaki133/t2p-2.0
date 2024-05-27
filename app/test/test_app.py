@@ -57,8 +57,13 @@ class TestApp(unittest.TestCase):
         log.debug("Error text: " + str(response.json))
         self.assertEqual(response.status_code, 500)
 
-
-        
+    def test_api_call_error_message(self):
+        """
+        Test the api_call endpoint with wrong api key. It should return a 500 error.
+        """
+        response = self.app.post('/api_call', json={"text": "Error", "api_key": "wrong_key"})
+        self.assertEqual(response.status_code, 500)
+        self.assertTrue("'error': {'message':" in response.json["error"])
 
 if __name__ == '__main__':
     logging.basicConfig(stream=sys.stderr)
