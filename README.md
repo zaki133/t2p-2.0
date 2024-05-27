@@ -70,6 +70,10 @@ curl http://localhost:4000/test_connection
 ## Running unit tests
 First install the requirements, see section "Setting Up Your Local Environment" for more information.
 
+Create config.py file in app/test folder and add the following content:
+```bash
+API_KEY = "ENTER_YOUR_API_KEY_HERE"
+```
 To run all the tests, use the following command:
 ```bash
 coverage run -m unittest discover
