@@ -16,7 +16,7 @@ class ApiCaller:
                     {"role": "user", "content": user_text}
                 ],
                 temperature=0,
-                model="gpt-4-turbo",
+                model="gpt-4o",
                 max_tokens=4096
             )
             response_text = chat_completion.choices[0].message.content.strip()
@@ -24,7 +24,7 @@ class ApiCaller:
             return response_text
         except Exception as e:
             return f"An error occurred: {str(e)}"
-#
+            
     def conversion_pipeline(self, process_description):
 
         prompt = self.generate_first_prompt()
