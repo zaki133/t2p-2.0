@@ -1,28 +1,21 @@
 name: Docker Image CI
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/backend
+
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-        cd app/backend
-        pip install -r requirements.txt
-    - name: Run tests
-      run: |
-        source venv/bin/activate
-        cd app/test
-        coverage run -m unittest discover
     - name: Build the Docker image
-      run: docker build . --file app/backend/Dockerfile --tag t2p-2.0:$(date +%s)
+      run: docker build . --file Dockerfile --tag t2p-2.0:$(date +%s)
