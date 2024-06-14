@@ -11,8 +11,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/backend
 
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file app/backend/Dockerfile --tag t2p-2.0:$(date +%s)
+      run: docker build . --file Dockerfile --tag t2p-2.0:$(date +%s)
