@@ -160,3 +160,15 @@ cython_debug/
 #.idea/
 /source
 app/test/config.py
+app/source/pyvenv.cfg
+app/source/Scripts/activate
+app/source/Scripts/activate.bat
+app/source/Scripts/Activate.ps1
+app/source/Scripts/deactivate.bat
+app/source/Scripts/pip.exe
+app/source/Scripts/pip3.10.exe
+app/source/Scripts/pip3.exe
+app/source/Scripts/python.exe
+app/source/Scripts/pythonw.exe
+app/test/bpmn_output.bpmn
+bpmn_output.bpmn
