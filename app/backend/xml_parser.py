@@ -55,3 +55,4 @@ def json_to_bpmn(bpmn_data):
     tree = ET.ElementTree(definitions)
     ET.indent(tree, space="  ", level=0)
     tree.write('bpmn_output.bpmn', encoding='utf-8', xml_declaration=True)
+    return ET.tostring(definitions, encoding='unicode')
