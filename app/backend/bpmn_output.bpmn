@@ -1,31 +1,31 @@
 <?xml version='1.0' encoding='utf-8'?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://example.bpmn.com/schema/bpmn">
   <process id="Process_1" isExecutable="false">
-    <startEvent id="startEvent1" name="Customer Submits Issue" />
-    <endEvent id="endEvent1" name="Issue Resolved" />
-    <endEvent id="endEvent2" name="Customer Informed of Timeline" />
-    <UserTask id="task1" name="Submit Issue Form" />
-    <ServiceTask id="task2" name="Check Known Issues" />
-    <ServiceTask id="task3" name="Provide Solution to Customer" />
-    <UserTask id="task4" name="Forward Ticket to Representative" />
-    <UserTask id="task5" name="Review and Troubleshoot Issue" />
-    <UserTask id="task6" name="Guide Customer and Close Ticket" />
-    <UserTask id="task7" name="Escalate to Technical Specialist" />
-    <ServiceTask id="task8" name="Conduct Analysis" />
-    <ServiceTask id="task9" name="Review Logs" />
-    <ServiceTask id="task10" name="Check System Compatibility" />
-    <UserTask id="task11" name="Resolve Issue or Identify Need for Patch" />
-    <UserTask id="task12" name="Notify Development Team" />
-    <ServiceTask id="task13" name="Develop and Test Patch" />
-    <UserTask id="task14" name="Send Patch to Customer" />
-    <UserTask id="task15" name="Inform Customer of Timeline" />
-    <UserTask id="task16" name="Confirm Resolution with Customer" />
-    <ExclusiveGateway id="gateway1" name="Known Issue?" />
-    <ExclusiveGateway id="gateway2" name="Representative Resolve?" />
-    <ExclusiveGateway id="gateway3" name="Technical Specialist Resolve?" />
-    <ExclusiveGateway id="gateway4" name="Patch Required?" />
-    <ParallelGateway id="gateway5" name="Analysis Split" />
-    <ParallelGateway id="gateway6" name="Analysis Join" />
+    <startEvent id="startEvent1" name="Customer Logs Issue" x="100" y="100" />
+    <endEvent id="endEvent1" name="Ticket Closed" x="2100" y="100" />
+    <UserTask id="task1" name="Submit Issue Form" x="350" y="100" />
+    <ServiceTask id="task2" name="Check Known Issues" x="600" y="100" />
+    <ServiceTask id="task3" name="Provide Solution" x="850" y="100" />
+    <UserTask id="task4" name="Forward to Representative" x="850" y="250" />
+    <UserTask id="task5" name="Review and Troubleshoot" x="1100" y="250" />
+    <UserTask id="task6" name="Guide Customer" x="1350" y="250" />
+    <UserTask id="task7" name="Escalate to Technical Specialist" x="1350" y="400" />
+    <ServiceTask id="task8" name="Conduct Analysis" x="1850" y="400" />
+    <ServiceTask id="task9" name="Review Logs" x="2350" y="700" />
+    <ServiceTask id="task10" name="Check Compatibility" x="2850" y="700" />
+    <ServiceTask id="task11" name="Resolve Issue" x="2350" y="400" />
+    <ServiceTask id="task12" name="Notify Development Team" x="2600" y="550" />
+    <ServiceTask id="task13" name="Develop Patch" x="2850" y="550" />
+    <ServiceTask id="task14" name="Test Patch" x="3100" y="550" />
+    <ServiceTask id="task15" name="Send Patch to Customer" x="3350" y="550" />
+    <UserTask id="task16" name="Inform Customer of Timeline" x="3850" y="550" />
+    <UserTask id="task17" name="Confirm Resolution" x="1600" y="250" />
+    <exclusiveGateway id="gateway1" name="Known Issue Check" x="600" y="1150" />
+    <exclusiveGateway id="gateway2" name="Representative Capability Check" x="1100" y="1300" />
+    <exclusiveGateway id="gateway3" name="Technical Specialist Resolution Check" x="1600" y="1450" />
+    <exclusiveGateway id="gateway4" name="Patch Requirement Check" x="2350" y="550" />
+    <parallelGateway id="gateway5" name="Analysis Parallel Split" x="1600" y="400" />
+    <parallelGateway id="gateway6" name="Analysis Parallel Join" x="2100" y="400" />
     <sequenceFlow id="flow1" sourceRef="startEvent1" targetRef="task1" />
     <sequenceFlow id="flow2" sourceRef="task1" targetRef="task2" />
     <sequenceFlow id="flow3" sourceRef="task2" targetRef="gateway1" />
@@ -35,224 +35,224 @@
     <sequenceFlow id="flow7" sourceRef="task4" targetRef="task5" />
     <sequenceFlow id="flow8" sourceRef="task5" targetRef="gateway2" />
     <sequenceFlow id="flow9" sourceRef="gateway2" targetRef="task6" />
-    <sequenceFlow id="flow10" sourceRef="task6" targetRef="endEvent1" />
-    <sequenceFlow id="flow11" sourceRef="gateway2" targetRef="task7" />
-    <sequenceFlow id="flow12" sourceRef="task7" targetRef="gateway5" />
-    <sequenceFlow id="flow13" sourceRef="gateway5" targetRef="task8" />
-    <sequenceFlow id="flow14" sourceRef="gateway5" targetRef="task9" />
-    <sequenceFlow id="flow15" sourceRef="gateway5" targetRef="task10" />
-    <sequenceFlow id="flow16" sourceRef="task8" targetRef="gateway6" />
-    <sequenceFlow id="flow17" sourceRef="task9" targetRef="gateway6" />
-    <sequenceFlow id="flow18" sourceRef="task10" targetRef="gateway6" />
-    <sequenceFlow id="flow19" sourceRef="gateway6" targetRef="gateway3" />
-    <sequenceFlow id="flow20" sourceRef="gateway3" targetRef="task11" />
-    <sequenceFlow id="flow21" sourceRef="task11" targetRef="gateway4" />
-    <sequenceFlow id="flow22" sourceRef="gateway4" targetRef="task12" />
-    <sequenceFlow id="flow23" sourceRef="task12" targetRef="task13" />
-    <sequenceFlow id="flow24" sourceRef="task13" targetRef="task14" />
-    <sequenceFlow id="flow25" sourceRef="task14" targetRef="endEvent1" />
-    <sequenceFlow id="flow26" sourceRef="gateway4" targetRef="endEvent2" />
-    <sequenceFlow id="flow27" sourceRef="gateway3" targetRef="task15" />
-    <sequenceFlow id="flow28" sourceRef="task15" targetRef="endEvent2" />
-    <sequenceFlow id="flow29" sourceRef="endEvent2" targetRef="task16" />
-    <sequenceFlow id="flow30" sourceRef="task16" targetRef="endEvent1" />
+    <sequenceFlow id="flow10" sourceRef="task6" targetRef="task17" />
+    <sequenceFlow id="flow11" sourceRef="task17" targetRef="endEvent1" />
+    <sequenceFlow id="flow12" sourceRef="gateway2" targetRef="task7" />
+    <sequenceFlow id="flow13" sourceRef="task7" targetRef="gateway5" />
+    <sequenceFlow id="flow14" sourceRef="gateway5" targetRef="task8" />
+    <sequenceFlow id="flow15" sourceRef="gateway5" targetRef="task9" />
+    <sequenceFlow id="flow16" sourceRef="gateway5" targetRef="task10" />
+    <sequenceFlow id="flow17" sourceRef="task8" targetRef="gateway6" />
+    <sequenceFlow id="flow18" sourceRef="task9" targetRef="gateway6" />
+    <sequenceFlow id="flow19" sourceRef="task10" targetRef="gateway6" />
+    <sequenceFlow id="flow20" sourceRef="gateway6" targetRef="gateway3" />
+    <sequenceFlow id="flow21" sourceRef="gateway3" targetRef="task11" />
+    <sequenceFlow id="flow22" sourceRef="task11" targetRef="task17" />
+    <sequenceFlow id="flow23" sourceRef="gateway3" targetRef="gateway4" />
+    <sequenceFlow id="flow24" sourceRef="gateway4" targetRef="task12" />
+    <sequenceFlow id="flow25" sourceRef="task12" targetRef="task13" />
+    <sequenceFlow id="flow26" sourceRef="task13" targetRef="task14" />
+    <sequenceFlow id="flow27" sourceRef="task14" targetRef="task15" />
+    <sequenceFlow id="flow28" sourceRef="task15" targetRef="task17" />
+    <sequenceFlow id="flow29" sourceRef="gateway4" targetRef="task16" />
+    <sequenceFlow id="flow30" sourceRef="task16" targetRef="task17" />
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
       <bpmndi:BPMNShape id="task1_di" bpmnElement="task1">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="350" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task2_di" bpmnElement="task2">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="600" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task3_di" bpmnElement="task3">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="850" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task4_di" bpmnElement="task4">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="850" y="250" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task5_di" bpmnElement="task5">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="1100" y="250" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task6_di" bpmnElement="task6">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="1350" y="250" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task7_di" bpmnElement="task7">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="1350" y="400" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task8_di" bpmnElement="task8">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="1850" y="400" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task9_di" bpmnElement="task9">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2350" y="700" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task10_di" bpmnElement="task10">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2850" y="700" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task11_di" bpmnElement="task11">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2350" y="400" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task12_di" bpmnElement="task12">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2600" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task13_di" bpmnElement="task13">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2850" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task14_di" bpmnElement="task14">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="3100" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task15_di" bpmnElement="task15">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="3350" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task16_di" bpmnElement="task16">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="3850" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="task17_di" bpmnElement="task17">
+        <dc:Bounds x="1600" y="250" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="startEvent1_di" bpmnElement="startEvent1">
         <dc:Bounds x="100" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="endEvent1_di" bpmnElement="endEvent1">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="endEvent2_di" bpmnElement="endEvent2">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2100" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="gateway1_di" bpmnElement="gateway1">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="600" y="1150" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="gateway2_di" bpmnElement="gateway2">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="1100" y="1300" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="gateway3_di" bpmnElement="gateway3">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="1600" y="1450" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="gateway4_di" bpmnElement="gateway4">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2350" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="gateway5_di" bpmnElement="gateway5">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="1600" y="400" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="gateway6_di" bpmnElement="gateway6">
-        <dc:Bounds x="100" y="100" width="100" height="80" />
+        <dc:Bounds x="2100" y="400" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="flow1_di" bpmnElement="flow1">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="150.0" y="140.0" />
+        <di:waypoint x="400.0" y="140.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow2_di" bpmnElement="flow2">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="400.0" y="140.0" />
+        <di:waypoint x="650.0" y="140.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow3_di" bpmnElement="flow3">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="650.0" y="140.0" />
+        <di:waypoint x="650.0" y="1190.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow4_di" bpmnElement="flow4">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="650.0" y="1190.0" />
+        <di:waypoint x="900.0" y="140.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow5_di" bpmnElement="flow5">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="900.0" y="140.0" />
+        <di:waypoint x="2150.0" y="140.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow6_di" bpmnElement="flow6">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="650.0" y="1190.0" />
+        <di:waypoint x="900.0" y="290.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow7_di" bpmnElement="flow7">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="900.0" y="290.0" />
+        <di:waypoint x="1150.0" y="290.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow8_di" bpmnElement="flow8">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1150.0" y="290.0" />
+        <di:waypoint x="1150.0" y="1340.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow9_di" bpmnElement="flow9">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1150.0" y="1340.0" />
+        <di:waypoint x="1400.0" y="290.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow10_di" bpmnElement="flow10">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1400.0" y="290.0" />
+        <di:waypoint x="1650.0" y="290.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow11_di" bpmnElement="flow11">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1650.0" y="290.0" />
+        <di:waypoint x="2150.0" y="140.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow12_di" bpmnElement="flow12">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1150.0" y="1340.0" />
+        <di:waypoint x="1400.0" y="440.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow13_di" bpmnElement="flow13">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1400.0" y="440.0" />
+        <di:waypoint x="1650.0" y="440.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow14_di" bpmnElement="flow14">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1650.0" y="440.0" />
+        <di:waypoint x="1900.0" y="440.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow15_di" bpmnElement="flow15">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1650.0" y="440.0" />
+        <di:waypoint x="2400.0" y="740.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow16_di" bpmnElement="flow16">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1650.0" y="440.0" />
+        <di:waypoint x="2900.0" y="740.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow17_di" bpmnElement="flow17">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1900.0" y="440.0" />
+        <di:waypoint x="2150.0" y="440.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow18_di" bpmnElement="flow18">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2400.0" y="740.0" />
+        <di:waypoint x="2150.0" y="440.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow19_di" bpmnElement="flow19">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2900.0" y="740.0" />
+        <di:waypoint x="2150.0" y="440.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow20_di" bpmnElement="flow20">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2150.0" y="440.0" />
+        <di:waypoint x="1650.0" y="1490.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow21_di" bpmnElement="flow21">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1650.0" y="1490.0" />
+        <di:waypoint x="2400.0" y="440.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow22_di" bpmnElement="flow22">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2400.0" y="440.0" />
+        <di:waypoint x="1650.0" y="290.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow23_di" bpmnElement="flow23">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="1650.0" y="1490.0" />
+        <di:waypoint x="2400.0" y="590.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow24_di" bpmnElement="flow24">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2400.0" y="590.0" />
+        <di:waypoint x="2650.0" y="590.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow25_di" bpmnElement="flow25">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2650.0" y="590.0" />
+        <di:waypoint x="2900.0" y="590.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow26_di" bpmnElement="flow26">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2900.0" y="590.0" />
+        <di:waypoint x="3150.0" y="590.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow27_di" bpmnElement="flow27">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="3150.0" y="590.0" />
+        <di:waypoint x="3400.0" y="590.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow28_di" bpmnElement="flow28">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="3400.0" y="590.0" />
+        <di:waypoint x="1650.0" y="290.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow29_di" bpmnElement="flow29">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="2400.0" y="590.0" />
+        <di:waypoint x="3900.0" y="590.0" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="flow30_di" bpmnElement="flow30">
-        <di:waypoint x="120" y="150" />
-        <di:waypoint x="250" y="150" />
+        <di:waypoint x="3900.0" y="590.0" />
+        <di:waypoint x="1650.0" y="290.0" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
