@@ -14,7 +14,7 @@ jobs:
     permissions: write-all
     defaults:
       run:
-        working-directory: app/backend
+        working-directory: app
 
     steps:
     - uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: app/backend/Dockerfile
+        file: Dockerfile
         push: true
         tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
