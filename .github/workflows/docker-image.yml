@@ -24,6 +24,7 @@ jobs:
     - name: Set Release version env variable
       run: |
         echo "RELEASE_VERSION=$(echo ${{ github.ref_name }} | sed 's|.*/v\([^/]*\)$|\1|')" >> $GITHUB_ENV
+        echo "RELEASE_VERSION: ${{ env.RELEASE_VERSION }}"
           
     - name: Add SHORT_SHA env property with commit short sha
       run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
