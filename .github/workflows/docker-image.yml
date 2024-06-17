@@ -10,7 +10,7 @@ jobs:
 
   build:
 
-    runs-on: python:3.10.14-alpine
+    runs-on: ubuntu-latest
     permissions: write-all
     defaults:
       run:
