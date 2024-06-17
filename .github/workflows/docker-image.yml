@@ -14,7 +14,7 @@ jobs:
     permissions: write-all
     defaults:
       run:
-        working-directory: app
+        working-directory: ${{ github.event.repository.name}}
 
     steps:
     - uses: actions/checkout@v4
@@ -69,8 +69,8 @@ jobs:
         file: Dockerfile
         push: true
         tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}.${{ env.minor_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}.${{ env.minor_version }}.${{ env.patch_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}.${{ env.minor_version }}.${{ env.patch_version }}-${{ env.SHORT_SHA }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.major_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.major_version }}.${{ env.minor_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.major_version }}.${{ env.minor_version }}.${{ env.patch_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.major_version }}.${{ env.minor_version }}.${{ env.patch_version }}-${{ env.SHORT_SHA }}
