@@ -26,13 +26,14 @@ class ApiCaller:
             return f"An error occurred: {str(e)}"
             
     def conversion_pipeline(self, process_description):
-
-        json_data = self.generate_bpmn_json(process_description)
-        json_to_bpmn(json.loads(json_data))
-
-        return json_data
-
-
+        
+        try:
+            json_data = self.generate_bpmn_json(process_description)
+            json_to_bpmn(json.loads(json_data))
+            return json_data
+        except Exception as e:
+            return f"An error occurred: {str(e)}"
+        
     # @staticmethod
     # def generate_first_prompt():
     #     # Construct the prompt to ask for detailed business process elements with explicit formatting
