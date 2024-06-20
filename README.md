@@ -80,12 +80,12 @@ curl http://localhost:4000/test_connection
 
 First install the requirements, see section "Setting Up Your Local Environment" for more information.
 
-### In the app/test folder, run the following commands:
+### In the app folder, run the following commands:
 
 To run all the tests, use the following command:
 
 ```bash
-coverage run -m unittest discover
+coverage run -m unittest discover unittest
 ```
 
 To see the coverage report, use the following command:

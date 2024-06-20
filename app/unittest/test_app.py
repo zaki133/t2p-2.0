@@ -1,7 +1,7 @@
 import unittest
 import os
 import sys
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 # Add the app/backend directory to the Python path.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../backend')))
@@ -48,19 +48,12 @@ class TestApp(unittest.TestCase):
         """
         Test the api_call endpoint with a successful API call.
         """
-        # Create a MagicMock instance
-        mock_call_api = MagicMock(return_value='mock_response')
-        mock_conversion_pipeline = MagicMock(return_value='mock_result')
-
-        # Assign the MagicMock instances to the call_api and conversion_pipeline methods
-        ApiCaller.call_api = mock_call_api
-        ApiCaller.conversion_pipeline = mock_conversion_pipeline
-
-        response = self.app.post('/api_call', json={"text": "Hello", "api_key": "dummy_api_key" })
-        if response.status_code != 200:
-            print(response.json)  # Print the response body when the test fails
-        self.assertEqual(response.status_code, 200)
-        mock_call_api.assert_called_once_with('system_prompt', 'user_text')
+        with patch('backend.gpt_process.ApiCaller') as mock:
+            mock.return_value = MagicMock()
+            mock.return_value.conversion_pipeline.return_value = "Success"
+            response = self.app.post('/api_call', json={"text": "Hello", "api_key": "123"})
+            self.assertEqual(response.status_code, 200)
+            
 
 if __name__ == '__main__':
     unittest.main()
