@@ -4,7 +4,12 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+      branches: [ "main" ]
+      
+env:
+  MAJOR_VERSION: 0
+  MINOR_VERSION: 6
+  MICRO_VERSION: 3
 
 jobs:
 
@@ -12,64 +17,28 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions: write-all
-    defaults:
-      run:
-        working-directory: app
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-      with: 
-        version: v0.6.3
-
-    - name: Set Release version env variable
-      run: |
-        echo "RELEASE_VERSION=$(echo ${{ github.ref_name }} | sed 's|.*/v\([^/]*\)$|\1|')" >> $GITHUB_ENV
-          
-    - name: Add SHORT_SHA env property with commit short sha
-      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-        
-    - uses: rishabhgupta/split-by@v1
-      id: split
-      with:
-        string: '${{ env.RELEASE_VERSION }}'
-        split-by: '.'
-    
-    - name: Set version variables
-      run: |
-          echo "major_version=${{ steps.split.outputs._0}}"
-          echo "major_version=${{ steps.split.outputs._0}}" >> $GITHUB_ENV
-          echo "minor_version=${{ steps.split.outputs._1}}"
-          echo "minor_version=${{ steps.split.outputs._1}}" >> $GITHUB_ENV
-          echo "patch_version=${{ steps.split.outputs._2}}"
-          echo "patch_version=${{ steps.split.outputs._2}}" >> $GITHUB_ENV
-
-    - uses: rishabhgupta/split-by@v1
-      id: split2
-      with:
-        string: '${{ env.patch_version }}'
-        split-by: '-'
-    - name: Set patch version variable
-      run: |
-        echo "patch_version=${{ steps.split2.outputs._0}}"
-        echo "patch_version=${{ steps.split2.outputs._0}}" >> $GITHUB_ENV
     
     - name: Login to DockerHub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+    - name: Add SHORT_SHA env property with commit short sha
+      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
 
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: Dockerfile
         push: true
         tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}.${{ env.minor_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}.${{ env.minor_version }}.${{ env.patch_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ env.major_version }}.${{ env.minor_version }}.${{ env.patch_version }}-${{ env.SHORT_SHA }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.MAJOR_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.MICRO_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.MICRO_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name}}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.MICRO_VERSION }}-${{ env.SHORT_SHA }}
