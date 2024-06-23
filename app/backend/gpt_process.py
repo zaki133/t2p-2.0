@@ -39,60 +39,7 @@ class ApiCaller:
             xml_data = json_to_bpmn(json.loads(json_data))
             return xml_data
         except Exception as e:
-            return f"An error occurred: {str(e)}"
-        
-    # @staticmethod
-    # def generate_first_prompt():
-    #     # Construct the prompt to ask for detailed business process elements with explicit formatting
-    #     prompt = (
-    #             """You are an assistant for breaking down complex process descriptions into BPMN 2.0 elements. Your task is to provide a detailed and accurate breakdown of the business process in a structured format. Ensure that the process flow is clearly delineated, and all decision points are systematically resolved as per BPMN standards.
-
-    #             Details to include, only if present in the process description (ommiting elements if fine):
-
-    #             Events:
-    #             - Start Event: Describe the initial event that triggers the process.
-    #             - End Event: Describe the final event that concludes the process.
-
-    #             Tasks/Activities:
-    #             - List all tasks and activities involved in the process along with a brief description of each.
-
-    #             Gateways (Decision Points):
-    #             - Opening Gateways: Describe any decision points within the process, including the conditions that guide the decisions.
-    #             - Closing Gateways: Ensure each gateway opened in the process is correspondingly closed. Provide details on how each decision point is resolved, maintaining the logical flow of the process.
-
-    #             Flows:
-    #             - Sequence Flows: Detail all sequence flows, explaining how tasks and events are interconnected. Ensure accurate representation of the flow, maintaining the order of activities as described. Confirm that each element is connected with at EXACTLY two sequence flows, apart from start-events, end-events and gateways.  
-
-    #             Ensure that the information is comprehensive and precisely corresponds to the elements required for a BPMN 2.0 diagram. Your output should form a complete, executable BPMN diagram that accurately reflects the described process."""
-    #     )
-    #     original_prompt = """
-    #             You are an assistant for breaking down complex process descriptions into BPMN 2.0 elements. Your task is to provide a detailed and accurate breakdown of the business process in a structured format. Ensure that the process flow is clearly delineated, and all decision points are systematically resolved as per BPMN standards.
-
-    #             Details to include:
-
-    #             Events:
-    #             - Start Event: Describe the initial event that triggers the process.
-    #             - Intermediate Events: List any intermediate events that occur during the process.
-    #             - End Event: Describe the final event that concludes the process.
-
-    #             Tasks/Activities:
-    #             - List all tasks and activities involved in the process along with a brief description of each.
-
-    #             Gateways (Decision Points):
-    #             - Opening Gateways: Describe any decision points within the process, including the conditions that guide the decisions.
-    #             - Closing Gateways: Ensure each gateway opened in the process is correspondingly closed. Provide details on how each decision point is resolved, maintaining the logical flow of the process.
-
-    #             Flows:
-    #             - Sequence Flows: Detail all sequence flows, explaining how tasks and events are interconnected. Ensure accurate representation of the flow, maintaining the order of activities as described. Confirm that each element is connected with at least one sequence flow, paying special attention to intermediate events.
-    #             - Message Flows: Detail all message flows between participants.
-
-    #             Participants (Pools, Lanes):
-    #             - Identify all participants involved in the process, and specify their roles within pools and lanes.
-
-    #             Ensure that the information is comprehensive and precisely corresponds to the elements required for a BPMN 2.0 diagram. Your output should form a complete, executable BPMN diagram that accurately reflects the described process."""
-        
-    #     return prompt
-    
+            return f"An error occurred: {str(e)}"  
 
 
     def generate_bpmn_json(self, user_description):
