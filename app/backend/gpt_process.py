@@ -36,8 +36,8 @@ class ApiCaller:
         
         try:
             json_data = self.generate_bpmn_json(process_description)
-            json_to_bpmn(json.loads(json_data))
-            return json_data
+            xml_data = json_to_bpmn(json.loads(json_data))
+            return xml_data
         except Exception as e:
             return f"An error occurred: {str(e)}"
         
