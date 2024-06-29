@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from gpt_process import ApiCaller
 
 app = Flask(__name__)
-app.config['APPLICATION_ROOT'] = '/t2p-2.0'
+# app.config['APPLICATION_ROOT'] = '/t2p-2.0'
 
 @app.route('/test_connection', methods=['GET'])
 def test():
