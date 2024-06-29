@@ -21,7 +21,7 @@ class ApiCaller:
         }
         try:
             # Make a POST request to the other API
-            response = requests.post(self.flask_api_url, headers=headers, json=data_payload)
+            response = requests.post(self.flask_app_url, headers=headers, json=data_payload)
             if response.status_code == 200:
                 # Process the response from your Flask API
                 response_data = response.json()
