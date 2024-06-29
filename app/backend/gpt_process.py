@@ -7,7 +7,7 @@ from xml_parser import json_to_bpmn
 class ApiCaller:
     def __init__(self, api_key):
         self.api_key = api_key
-        self.flask_app_url = "someurlIDK/call_openai" #!!!!!!!!!!!!!!!SET THIS WHEN DEPLOYED!!!!!!!!!!!!!!
+        self.flask_app_url = "https://woped.dhbw-karlsruhe.de/llm-api-connector/call_openai" #!!!!!!!!!!!!!!!SET THIS WHEN DEPLOYED!!!!!!!!!!!!!!
 
     def call_api(self, system_prompt, user_text):
         # Construct the data payload to send to the Flask API
