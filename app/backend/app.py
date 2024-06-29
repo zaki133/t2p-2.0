@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from gpt_process import ApiCaller
 
-app = Flask(__name__) 
+app = Flask(__name__)
+# app.config['APPLICATION_ROOT'] = '/t2p-2.0'
 
 @app.route('/test_connection', methods=['GET'])
 def test():
@@ -40,5 +41,11 @@ def api_call():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
+@app.route('/_/_/echo')
+def echo():
+    return jsonify(success=True)
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0')
