@@ -7,7 +7,7 @@ from xml_parser import json_to_bpmn
 class ApiCaller:
     def __init__(self, api_key):
         self.api_key = api_key
-        self.flask_app_url = "someurlIDK/call_openai" #!!!!!!!!!!!!!!!SET THIS WHEN DEPLOYED!!!!!!!!!!!!!!
+        self.flask_app_url = "https://woped.dhbw-karlsruhe.de/llm-api-connector/call_openai" #!!!!!!!!!!!!!!!SET THIS WHEN DEPLOYED!!!!!!!!!!!!!!
 
     def call_api(self, system_prompt, user_text):
         # Construct the data payload to send to the Flask API
@@ -21,7 +21,7 @@ class ApiCaller:
         }
         try:
             # Make a POST request to the other API
-            response = requests.post(self.flask_api_url, headers=headers, json=data_payload)
+            response = requests.post(self.flask_app_url, headers=headers, json=data_payload)
             if response.status_code == 200:
                 # Process the response from your Flask API
                 response_data = response.json()
